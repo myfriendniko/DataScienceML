@@ -6,7 +6,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from imblearn.over_sampling import SMOTE
 
 # ==============================================================================
-# Step 2: Simulate a synthetic dataset
+# Simulate a synthetic dataset
 # ==============================================================================
 print("Generating synthetic dataset...")
 n_samples = 100000
@@ -38,7 +38,7 @@ print(f"Fraudulent transactions: {data['is_fraud'].sum()}")
 print(f"Legitimate transactions: {len(data) - data['is_fraud'].sum()}\n")
 
 # ==============================================================================
-# Step 3: Data Preprocessing
+# Data Preprocessing
 # ==============================================================================
 print("Starting data preprocessing...")
 
@@ -57,7 +57,7 @@ X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
 print(f"Resampled training set shape: {X_train_resampled.shape}, {y_train_resampled.sum()} fraudulent cases\n")
 
 # ==============================================================================
-# Step 4: Model Training
+# Model Training
 # ==============================================================================
 print("Training the RandomForestClassifier model...")
 model = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1)
@@ -65,7 +65,7 @@ model.fit(X_train_resampled, y_train_resampled)
 print("Model training complete.\n")
 
 # ==============================================================================
-# Step 5: Model Evaluation
+# Model Evaluation
 #
 # I make predictions on the *original, imbalanced* test set
 # to get a realistic performance metric.
@@ -94,4 +94,5 @@ print("For fraud detection, **Recall** for the '1' (fraud) class is often the mo
 print("It tells us what percentage of all actual fraudulent transactions our model successfully caught.")
 print("Our goal is to have a high Recall to minimize the number of missed fraud cases.")
 print("The classification report shows our model achieved a Recall of {} for fraudulent cases.".format(round(classification_report(y_test, y_pred, output_dict=True)['1']['recall'], 2)))
+
 

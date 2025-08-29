@@ -10,7 +10,7 @@ print("Generating synthetic user-product ratings data...")
 users = ['User_A', 'User_B', 'User_C', 'User_D', 'User_E']
 products = ['Product_1', 'Product_2', 'Product_3', 'Product_4', 'Product_5', 'Product_6']
 
-# Create a dictionary of ratings. NaN = UNRATEDPRODUCT.
+# NaN = UNRATEDPRODUCT.
 data = {
     'Product_1': [5, 4, 0, 0, 3],
     'Product_2': [4, 5, 5, 0, 0],
@@ -19,8 +19,9 @@ data = {
     'Product_5': [5, 0, 0, 4, 5],
     'Product_6': [3, 0, 0, 0, 4]
 }
-ratings_df = pd.DataFrame(data, index=users)
-ratings_df.replace(0, np.nan, inplace=True) # Replace 0 with NaN for "not rated"
+
+        ratings_df = pd.DataFrame(data, index=users)
+        ratings_df.replace(0, np.nan, inplace=True) # Replace 0 with NaN for "not rated"
 
 print("\nOriginal Ratings DataFrame:")
 print(ratings_df)
